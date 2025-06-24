@@ -10,12 +10,7 @@ items:
   - name: Другая страница
     href: anotherpage.md
   - name: Swagger Petstore API
-    include:
-      path: docs/ru/swagger-petstore-api.md
-      includers:
-        - name: openapi
-          input: petstore-api-draft.yaml
-      mode: link
+    href: swagger-petstore-api.md
   - name: Подраздел
     include:
       path: sub-section/toc.yaml
