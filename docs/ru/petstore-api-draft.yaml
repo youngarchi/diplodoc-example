@@ -1,14 +1,14 @@
 openapi: 3.0.0
 info:
-  title: Petstore API
-  version: 1.0.0
-  description: API магазина питомцев
+  title: Swagger Petstore API
+  description: API для магазина домашних животных
+  version: "1.0.0"
 
 servers:
   - url: https://api.petstore.com/v1
-    description: Production server
-  - url: https://sandbox.petstore.com/v1
-    description: Sandbox environment
+    description: Продакшн-сервер
+  - url: https://test-api.petstore.com/v1
+    description: Тестовая среда
 
 components:
   securitySchemes:
@@ -17,28 +17,10 @@ components:
       in: header
       name: X-API-Key
 
-security:
-  - ApiKeyAuth: []
-
-paths:
-  /pets:
-    get:
-      summary: Получить список питомцев
-      responses:
-        '200':
-          description: Список успешно получен
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-
-components:
   schemas:
     Pet:
       type: object
-      description: Объект питомца
+      description: Модель питомца
       properties:
         id:
           type: integer
@@ -46,6 +28,34 @@ components:
         name:
           type: string
           description: Имя питомца
-        status:
+        tag:
           type: string
-          description: Статус (available, pending, sold)
+          description: Метка или категория
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /pets:
+    get:
+      summary: Получить список всех питомцев
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+    post:
+      summary: Добавить нового питомца
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        '201':
+          description: Питомец создан
