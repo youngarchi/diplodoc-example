@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: Petstore API
+  version: 1.0.0
+  description: API магазина питомцев
+
+servers:
+  - url: https://api.petstore.com/v1
+    description: Production server
+  - url: https://sandbox.petstore.com/v1
+    description: Sandbox environment
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /pets:
+    get:
+      summary: Получить список питомцев
+      responses:
+        '200':
+          description: Список успешно получен
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+
+components:
+  schemas:
+    Pet:
+      type: object
+      description: Объект питомца
+      properties:
+        id:
+          type: integer
+          description: Уникальный идентификатор питомца
+        name:
+          type: string
+          description: Имя питомца
+        status:
+          type: string
+          description: Статус (available, pending, sold)
