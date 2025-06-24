@@ -5,3 +5,4 @@
 Артур Каюмов
 
 <openapi src="/petstore-api-draft.yaml"/>
+**Если ты видишь этот текст, значит Markdown отображается**
