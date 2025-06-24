@@ -7,6 +7,8 @@ items:
     href: page.md
   - name: Другая страница
     href: anotherpage.md
+  - name: Swagger Petstore API
+    href: swagger-petstore-api.md
   - name: Подраздел
     include:
       path: sub-section/toc.yaml
